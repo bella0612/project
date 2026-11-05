@@ -1,0 +1,213 @@
+/* ==========================================================================
+   2. 格線系統、雙欄佈局與響應式斷點 (css/layout.css)
+   ========================================================================== */
+
+/* 頂部主導覽列 (Navbar) */
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background-color: rgba(247, 245, 240, 0.94);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid var(--c-border);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 2.5rem;
+}
+
+.brand {
+  font-family: var(--font-serif);
+  font-size: 1.25rem;
+  font-weight: 700;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.brand-symbol {
+  color: var(--c-terracotta);
+  font-size: 1.4rem;
+}
+
+.nav-links {
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.nav-btn {
+  font-size: 0.95rem;
+  color: var(--c-muted);
+  font-weight: 500;
+  padding: 0.4rem 0.6rem;
+  border-bottom: 2px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-btn:hover {
+  color: var(--c-terracotta);
+}
+
+.nav-btn.active {
+  color: var(--c-charcoal);
+  font-weight: 700;
+  border-bottom: 2px solid var(--c-terracotta);
+}
+
+.mobile-menu-btn {
+  display: none;
+  font-size: 1.5rem;
+  color: var(--c-charcoal);
+}
+
+/* 核心非對稱雙欄佈局 (Desktop Grid) */
+.app-container {
+  display: grid;
+  grid-template-columns: 310px 1fr;
+  max-width: 1400px;
+  margin: 0 auto;
+  min-height: calc(100vh - 75px);
+  border-left: 1px solid var(--c-border);
+  border-right: 1px solid var(--border-color, var(--c-border));
+}
+
+/* 左側固定式側邊欄 (Sticky Sidebar) */
+.sidebar {
+  border-right: 1px solid var(--c-border);
+  background-color: var(--c-surface-warm);
+  padding: 2.8rem 2rem;
+}
+
+.sidebar-sticky-wrap {
+  position: sticky;
+  top: 5.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.8rem;
+}
+
+.sidebar-heading {
+  font-family: var(--font-serif);
+  font-size: 1.35rem;
+  margin-top: 0.4rem;
+  color: var(--c-charcoal);
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.side-link {
+  padding: 0.6rem 0.8rem;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  color: var(--c-muted);
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.2s;
+}
+
+.side-link:hover {
+  background-color: rgba(158, 71, 56, 0.08);
+  color: var(--c-terracotta);
+  transform: translateX(4px);
+}
+
+.side-link.active {
+  background-color: var(--c-terracotta);
+  color: #fff;
+  font-weight: 600;
+}
+
+.side-card {
+  background-color: var(--c-surface);
+  border: 1px solid var(--c-border);
+  padding: 1.2rem;
+  border-radius: 6px;
+  font-size: 0.85rem;
+  line-height: 1.6;
+}
+
+/* 主展示內容區塊 */
+.main-stage {
+  padding: 3.5rem 4rem;
+  background-color: var(--c-bg);
+}
+
+/* 頁面切換機制 (View Panel) */
+.view-panel {
+  display: none;
+}
+
+.view-panel.active {
+  display: block;
+  animation: fadeIn 0.3s ease-in-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+/* 頁尾 Footer */
+.site-footer {
+  text-align: center;
+  padding: 2.5rem 1rem;
+  border-top: 1px solid var(--c-border);
+  font-size: 0.85rem;
+  color: var(--c-muted);
+}
+
+/* ==========================================================================
+   RWD 響應式佈局斷點 (< 960px)
+   ========================================================================== */
+@media (max-width: 960px) {
+  .site-header {
+    padding: 1rem 1.5rem;
+  }
+
+  .mobile-menu-btn {
+    display: block;
+  }
+
+  .nav-links {
+    display: none;
+    flex-direction: column;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    background-color: var(--c-bg);
+    border-bottom: 1px solid var(--c-border);
+    padding: 1.2rem 1.5rem;
+    align-items: flex-start;
+  }
+
+  .nav-links.is-open {
+    display: flex;
+  }
+
+  /* 雙欄在行動裝置轉為單欄全幅 */
+  .app-container {
+    grid-template-columns: 1fr;
+    border: none;
+  }
+
+  .sidebar {
+    border-right: none;
+    border-bottom: 1px solid var(--c-border);
+    padding: 2rem 1.5rem;
+  }
+
+  .sidebar-sticky-wrap {
+    position: static;
+  }
+
+  .main-stage {
+    padding: 2.5rem 1.5rem;
+  }
+}

@@ -1,0 +1,1121 @@
+<!DOCTYPE html>
+<html lang="zh-Hant-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- ================= SEO Meta 完整設定 ================= -->
+  <title>臺中第二市場專題影展 | 六角時光與常民聲影誌 (大二專題)</title>
+  <meta name="description" content="逢甲大學行銷系大二專題製作：以臺中第二市場為核心的獨立專題影展。跳脫傳統版面，以百年六角樓建築考、清晨旬味時間軸與在地職人紀錄片，構築常民生活的聲光檔案。">
+  <meta name="keywords" content="臺中第二市場, 影展專題, 六角樓, 新富町市場">
+  <meta name="author" content="影展專題策劃小組">
+
+  <!-- Open Graph / 社群分享預覽 -->
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="臺中第二市場專題影展：六角時光與常民聲影誌">
+  <meta property="og:description" content="穿梭百年紅磚與六角放射動線，探尋臺中第二市場清晨至暮色的生活光影。">
+  <meta property="og:image" content="images/hero-bg.jpg">
+  <meta property="og:url" content="https://taichung-market-filmfest.vercel.app">
+
+  <!-- Google Fonts: 襯線人文感與現代無襯線結合 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;600;700;900&family=Noto+Sans+TC:wght@300;400;500;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/layout.css">
+  <link rel="stylesheet" href="css/components.css">
+  <style>
+    /* ==============================================================
+       1. BASE STYLES & EARTH TONE TOKENS (大地色系變數)
+       ============================================================== */
+    :root {
+      --earth-linen: #F7F5F0;        /* 亞麻溫暖淺底紙色 */
+      --earth-card: #FFFFFF;         /* 卡片純淨白 */
+      --earth-sand: #EAE5D9;         /* 暖沙色邊框與背景 */
+      --earth-sand-dark: #D7D0BF;    /* 深沙色分隔線 */
+      --earth-brick: #9E4738;        /* 經典磚紅/赤陶色 (主視覺) */
+      --earth-brick-hover: #7E372A;  /* 深磚紅 */
+      --earth-mustard: #C08A3E;      /* 熟成芥末黃/暖茶褐 */
+      --earth-olive: #5B6350;        /* 橄欖灰綠 (輔助色) */
+      --earth-charcoal: #2A2624;     /* 炭褐主文字色 */
+      --earth-muted: #6E6862;        /* 次要文字灰棕色 */
+      --earth-panel: #EFECE3;        /* 側欄區塊暖底色 */
+      
+      --font-serif: 'Noto Serif TC', Georgia, serif;
+      --font-sans: 'Noto Sans TC', -apple-system, BlinkMacSystemFont, sans-serif;
+      --shadow-sm: 0 2px 8px rgba(42, 38, 36, 0.05);
+      --shadow-md: 0 8px 24px rgba(42, 38, 36, 0.08);
+      --radius: 8px;
+      --transition: all 0.25s ease;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--earth-linen);
+      color: var(--earth-charcoal);
+      font-family: var(--font-sans);
+      line-height: 1.75;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    img {
+      max-width: 100%;
+      height: auto;
+      display: block;
+    }
+
+    /* ==============================================================
+       2. HEADER & NAVIGATION (導覽列)
+       ============================================================== */
+    .site-header {
+      position: sticky;
+      top: 0;
+      z-index: 200;
+      background-color: rgba(247, 245, 240, 0.95);
+      backdrop-filter: blur(8px);
+      border-bottom: 1.5px solid var(--earth-sand-dark);
+      padding: 0.9rem 2rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand-area {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+    }
+
+    .brand-hex-icon {
+      width: 32px;
+      height: 32px;
+      background-color: var(--earth-brick);
+      color: var(--earth-linen);
+      clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      font-family: var(--font-serif);
+    }
+
+    .brand-title {
+      font-family: var(--font-serif);
+      font-weight: 900;
+      font-size: 1.25rem;
+      letter-spacing: 0.04em;
+      color: var(--earth-charcoal);
+    }
+
+    .brand-title span {
+      color: var(--earth-brick);
+      font-size: 0.85rem;
+      display: block;
+      letter-spacing: 0.1em;
+      font-weight: 500;
+      font-family: var(--font-sans);
+    }
+
+    .nav-tabs {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      list-style: none;
+    }
+
+    .tab-btn {
+      background: none;
+      border: 1px solid transparent;
+      padding: 0.55rem 1.1rem;
+      font-family: var(--font-sans);
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: var(--earth-muted);
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: var(--transition);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+    }
+
+    .tab-btn:hover {
+      color: var(--earth-brick);
+      background-color: rgba(158, 71, 56, 0.05);
+    }
+
+    .tab-btn.active {
+      color: var(--earth-brick);
+      background-color: var(--earth-card);
+      border-color: var(--earth-sand-dark);
+      font-weight: 700;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .doc-cta {
+      background-color: var(--earth-brick);
+      color: #FFF !important;
+      border-color: var(--earth-brick) !important;
+      margin-left: 0.5rem;
+    }
+
+    .doc-cta:hover {
+      background-color: var(--earth-brick-hover) !important;
+      color: #FFF !important;
+    }
+
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: 1px solid var(--earth-sand-dark);
+      padding: 0.5rem 0.8rem;
+      border-radius: var(--radius);
+      font-size: 1.2rem;
+      color: var(--earth-charcoal);
+      cursor: pointer;
+    }
+
+    /* ==============================================================
+       3. ASYMMETRIC GRID LAYOUT & SIDEBAR (非對稱雙欄)
+       ============================================================== */
+    .app-viewport {
+      flex: 1;
+      max-width: 1380px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+    }
+
+    .asymmetric-container {
+      display: grid;
+      grid-template-columns: 310px 1fr;
+      gap: 2.5rem;
+      align-items: start;
+    }
+
+    /* 左側 Sticky 側邊欄 */
+    .sticky-sidebar {
+      position: sticky;
+      top: 5.5rem;
+      background-color: var(--earth-panel);
+      border: 1px solid var(--earth-sand-dark);
+      border-radius: 12px;
+      padding: 1.8rem 1.5rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .side-eyebrow {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      color: var(--earth-brick);
+      font-weight: 700;
+      margin-bottom: 0.3rem;
+    }
+
+    .side-title {
+      font-family: var(--font-serif);
+      font-size: 1.35rem;
+      font-weight: 700;
+      margin-bottom: 1.2rem;
+      padding-bottom: 0.8rem;
+      border-bottom: 1px solid var(--earth-sand-dark);
+    }
+
+    .spatial-diagram {
+      background: var(--earth-card);
+      border: 1px dashed var(--earth-sand-dark);
+      border-radius: var(--radius);
+      padding: 1rem;
+      text-align: center;
+      margin-bottom: 1.4rem;
+    }
+
+    .hex-visual {
+      font-size: 2.2rem;
+      color: var(--earth-mustard);
+      margin-bottom: 0.3rem;
+    }
+
+    .spatial-caption {
+      font-size: 0.82rem;
+      color: var(--earth-muted);
+      line-height: 1.4;
+    }
+
+    .side-nav-links {
+      list-style: none;
+      margin-bottom: 1.5rem;
+    }
+
+    .side-nav-links li {
+      margin-bottom: 0.6rem;
+    }
+
+    .side-nav-links a {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0.45rem 0.6rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      color: var(--earth-charcoal);
+      font-weight: 500;
+    }
+
+    .side-nav-links a:hover {
+      background-color: var(--earth-sand);
+      color: var(--earth-brick);
+      transform: translateX(3px);
+    }
+
+    .fact-card {
+      background-color: var(--earth-sand);
+      padding: 1rem;
+      border-radius: var(--radius);
+      font-size: 0.85rem;
+      margin-top: 1rem;
+    }
+
+    .fact-card h4 {
+      font-family: var(--font-serif);
+      color: var(--earth-brick);
+      margin-bottom: 0.3rem;
+      font-size: 0.95rem;
+    }
+
+    .fact-card ul {
+      list-style: none;
+      color: var(--earth-muted);
+      line-height: 1.6;
+    }
+
+    /* 右側主內容區 (Tab Panels) */
+    .main-stage {
+      background-color: transparent;
+      min-width: 0; /* 防止 grid 溢出 */
+    }
+
+    .tab-content {
+      display: none;
+      animation: fadeIn 0.35s ease forwards;
+    }
+
+    .tab-content.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ==============================================================
+       4. HERO & EDITORIAL STYLING (首頁策展模組)
+       ============================================================== */
+    .hero-banner {
+      background: linear-gradient(135deg, #3C332D 0%, #2A2624 60%, #4D332D 100%);
+      color: var(--earth-linen);
+      padding: 3.5rem 3rem;
+      border-radius: 12px;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 2.5rem;
+      border: 1px solid rgba(215, 208, 191, 0.2);
+    }
+
+    .hero-banner::after {
+      content: "⬢";
+      position: absolute;
+      right: -2rem;
+      bottom: -4rem;
+      font-size: 15rem;
+      color: rgba(255, 255, 255, 0.03);
+      pointer-events: none;
+      font-family: serif;
+    }
+
+    .hero-tag {
+      display: inline-block;
+      background: var(--earth-mustard);
+      color: #FFF;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 0.12em;
+      padding: 0.3rem 0.8rem;
+      border-radius: 30px;
+      margin-bottom: 1.2rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-serif);
+      font-size: 2.6rem;
+      font-weight: 900;
+      line-height: 1.3;
+      margin-bottom: 1rem;
+      letter-spacing: 0.02em;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: #D3CDC2;
+      max-width: 680px;
+      line-height: 1.8;
+      margin-bottom: 1.8rem;
+    }
+
+    .hero-stats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 2rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.15);
+      padding-top: 1.5rem;
+    }
+
+    .stat-item h5 {
+      font-size: 1.6rem;
+      font-family: var(--font-serif);
+      color: var(--earth-sand);
+    }
+
+    .stat-item p {
+      font-size: 0.8rem;
+      color: #AFA89C;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .section-headline {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      margin-bottom: 1.5rem;
+      border-bottom: 2px solid var(--earth-sand-dark);
+      padding-bottom: 0.8rem;
+    }
+
+    .section-headline h3 {
+      font-family: var(--font-serif);
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: var(--earth-charcoal);
+    }
+
+    .section-headline span {
+      font-size: 0.85rem;
+      color: var(--earth-brick);
+      font-weight: 600;
+    }
+
+    /* ==============================================================
+       5. GRID SYSTEM FOR CARDS (片單與地標卡片)
+       ============================================================== */
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
+      gap: 1.8rem;
+      margin-bottom: 3rem;
+    }
+
+    .editorial-card {
+      background: var(--earth-card);
+      border: 1px solid var(--earth-sand-dark);
+      border-radius: var(--radius);
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      box-shadow: var(--shadow-sm);
+      transition: var(--transition);
+    }
+
+    .editorial-card:hover {
+      transform: translateY(-4px);
+      box-shadow: var(--shadow-md);
+      border-color: var(--earth-brick);
+    }
+
+    .card-thumbnail {
+      height: 180px;
+      background-color: #E2DBD0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      overflow: hidden;
+      color: var(--earth-muted);
+    }
+
+    .card-thumbnail svg {
+      width: 48px;
+      height: 48px;
+      opacity: 0.4;
+      margin-bottom: 0.5rem;
+    }
+
+    .card-thumbnail .tag-overlay {
+      position: absolute;
+      top: 0.8rem;
+      left: 0.8rem;
+      background: rgba(42, 38, 36, 0.85);
+      color: #FFF;
+      font-size: 0.72rem;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      letter-spacing: 0.05em;
+    }
+
+    .card-content {
+      padding: 1.4rem;
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+    }
+
+    .card-meta {
+      font-size: 0.8rem;
+      color: var(--earth-olive);
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    .card-title {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      font-weight: 700;
+      margin-bottom: 0.6rem;
+      color: var(--earth-charcoal);
+      line-height: 1.4;
+    }
+
+    .card-desc {
+      font-size: 0.9rem;
+      color: var(--earth-muted);
+      line-height: 1.6;
+      margin-bottom: 1.2rem;
+      flex: 1;
+    }
+
+    .card-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      border-top: 1px dashed var(--earth-sand);
+      padding-top: 0.8rem;
+      font-size: 0.85rem;
+    }
+
+    .card-action-btn {
+      color: var(--earth-brick);
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.3rem;
+      cursor: pointer;
+    }
+
+    /* ==============================================================
+       6. TIMELINE LAYOUT (旬味時間軸)
+       ============================================================== */
+    .timeline-stream {
+      position: relative;
+      padding-left: 2.2rem;
+      margin: 2rem 0 3rem;
+      border-left: 2px solid var(--earth-sand-dark);
+    }
+
+    .timeline-node {
+      position: relative;
+      margin-bottom: 2.5rem;
+    }
+
+    .timeline-node::before {
+      content: "";
+      position: absolute;
+      left: -2.75rem;
+      top: 0.35rem;
+      width: 14px;
+      height: 14px;
+      border-radius: 50%;
+      background-color: var(--earth-linen);
+      border: 3px solid var(--earth-brick);
+    }
+
+    .timeline-time {
+      display: inline-block;
+      font-family: var(--font-serif);
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--earth-brick);
+      background-color: var(--earth-sand);
+      padding: 0.2rem 0.65rem;
+      border-radius: 4px;
+      margin-bottom: 0.5rem;
+    }
+
+    .timeline-box {
+      background: var(--earth-card);
+      border: 1px solid var(--earth-sand-dark);
+      border-radius: var(--radius);
+      padding: 1.4rem;
+      box-shadow: var(--shadow-sm);
+    }
+
+    .timeline-box h4 {
+      font-family: var(--font-serif);
+      font-size: 1.2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    /* ==============================================================
+       7. ARCHITECTURE VIEW (六角樓空間考)
+       ============================================================== */
+    .arch-essay {
+      background: var(--earth-card);
+      border: 1px solid var(--earth-sand-dark);
+      border-radius: 12px;
+      padding: 2.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .arch-essay h2 {
+      font-family: var(--font-serif);
+      font-size: 1.8rem;
+      color: var(--earth-brick);
+      margin-bottom: 1rem;
+    }
+
+    .arch-layout-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-top: 1.5rem;
+    }
+
+    .arch-block {
+      background: var(--earth-linen);
+      padding: 1.2rem;
+      border-radius: var(--radius);
+      border-left: 4px solid var(--earth-mustard);
+    }
+
+    .arch-block h4 {
+      font-family: var(--font-serif);
+      margin-bottom: 0.4rem;
+    }
+
+    /* ==============================================================
+       8. MODAL / DIALOG (Prompt & Markdown 說明檢視)
+       ============================================================== */
+    .modal-backdrop {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background-color: rgba(42, 38, 36, 0.7);
+      z-index: 999;
+      justify-content: center;
+      align-items: center;
+      padding: 1.5rem;
+    }
+
+    .modal-backdrop.open {
+      display: flex;
+    }
+
+    .modal-box {
+      background: var(--earth-card);
+      width: 100%;
+      max-width: 860px;
+      max-height: 85vh;
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.25);
+      border: 1.5px solid var(--earth-sand-dark);
+      overflow: hidden;
+    }
+
+    .modal-header {
+      padding: 1.2rem 1.8rem;
+      background-color: var(--earth-panel);
+      border-bottom: 1px solid var(--earth-sand-dark);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .modal-header h3 {
+      font-family: var(--font-serif);
+      font-size: 1.25rem;
+      color: var(--earth-charcoal);
+    }
+
+    .modal-close-btn {
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      cursor: pointer;
+      color: var(--earth-muted);
+    }
+
+    .modal-body {
+      padding: 1.8rem;
+      overflow-y: auto;
+      font-size: 0.92rem;
+      line-height: 1.7;
+    }
+
+    .code-mirror-box {
+      background-color: #211E1C;
+      color: #E6E1D8;
+      padding: 1.2rem;
+      border-radius: 6px;
+      font-family: Consolas, Monaco, "Courier New", monospace;
+      white-space: pre-wrap;
+      font-size: 0.85rem;
+      margin: 1rem 0;
+      border: 1px solid #3A3532;
+    }
+
+    .modal-footer {
+      padding: 1rem 1.8rem;
+      border-top: 1px solid var(--earth-sand-dark);
+      display: flex;
+      justify-content: flex-end;
+      gap: 0.8rem;
+      background: var(--earth-linen);
+    }
+
+    .btn {
+      padding: 0.55rem 1.2rem;
+      border-radius: var(--radius);
+      font-size: 0.9rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: var(--transition);
+      border: 1px solid transparent;
+    }
+
+    .btn-secondary {
+      background: var(--earth-sand);
+      color: var(--earth-charcoal);
+      border-color: var(--earth-sand-dark);
+    }
+
+    .btn-primary {
+      background: var(--earth-brick);
+      color: #FFF;
+    }
+
+    .btn-primary:hover {
+      background: var(--earth-brick-hover);
+    }
+
+    /* ==============================================================
+       9. FOOTER
+       ============================================================== */
+    .site-footer {
+      border-top: 1.5px solid var(--earth-sand-dark);
+      background-color: var(--earth-panel);
+      padding: 2.5rem 2rem;
+      margin-top: 4rem;
+      font-size: 0.88rem;
+      color: var(--earth-muted);
+    }
+
+    .footer-inner {
+      max-width: 1380px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 1.5rem;
+    }
+
+    /* ==============================================================
+       10. RESPONSIVE DESIGN (RWD 響應式佈局)
+       ============================================================== */
+    @media (max-width: 992px) {
+      .asymmetric-container {
+        grid-template-columns: 1fr;
+      }
+      .sticky-sidebar {
+        position: static;
+        margin-bottom: 2rem;
+      }
+      .arch-layout-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .site-header {
+        padding: 0.8rem 1.2rem;
+      }
+      .mobile-menu-btn {
+        display: block;
+      }
+      .nav-tabs {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        right: 0;
+        background-color: var(--earth-linen);
+        border-bottom: 2px solid var(--earth-sand-dark);
+        flex-direction: column;
+        padding: 1.2rem;
+        gap: 0.6rem;
+        box-shadow: var(--shadow-md);
+      }
+      .nav-tabs.open {
+        display: flex;
+      }
+      .tab-btn {
+        width: 100%;
+        justify-content: flex-start;
+      }
+      .doc-cta {
+        margin-left: 0;
+      }
+      .hero-title {
+        font-size: 1.9rem;
+      }
+      .hero-banner {
+        padding: 2.2rem 1.5rem;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ================= 頂部導覽列 (Navbar) ================= -->
+  <header class="site-header">
+    <div class="brand-area">
+      <div class="brand-hex-icon">六</div>
+      <div class="brand-title">
+        臺中第二市場・常民影展
+        <span>TAICHUNG SECOND MARKET FILM FESTIVAL</span>
+      </div>
+    </div>
+
+    <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="切換選單">☰</button>
+
+    <nav class="nav-tabs" id="navTabs">
+      <button class="tab-btn active" data-target="tab-curation">
+        <span>🏛️</span> 首頁策展
+      </button>
+      <button class="tab-btn" data-target="tab-architecture">
+        <span>📐</span> 六角樓空間考
+      </button>
+      <button class="tab-btn doc-cta" id="openPromptModal">
+        <span>📋</span> 專題 Prompt & 說明
+      </button>
+    </nav>
+  </header>
+
+  <!-- ================= 主視窗非對稱 Grid 佈局 ================= -->
+  <div class="app-viewport">
+    <div class="asymmetric-container">
+      
+      <!-- 左側固定動線側欄 (Sticky Sidebar) -->
+      <aside class="sticky-sidebar">
+        <p class="side-eyebrow">Spatial Coordinates</p>
+        <h2 class="side-title">六角核心指針</h2>
+
+        <div class="spatial-diagram">
+          <div class="hex-visual">⬢</div>
+          <p class="spatial-caption"><strong>新富町・放射六條通</strong><br>建於1917年，以中樞兩層樓木造六角鐘樓為心臟向外展開。</p>
+        </div>
+
+        <ul class="side-nav-links">
+          <li><a href="javascript:void(0)" onclick="switchTab('tab-curation')"><span>1. 策展總論：常民記憶</span> <span>→</span></a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('tab-architecture')"><span>2. 空間紋理：六角木樓</span> <span>→</span></a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('tab-timeline')"><span>3. 晨昏作息：旬味四景</span> <span>→</span></a></li>
+          <li><a href="javascript:void(0)" onclick="switchTab('tab-films')"><span>4. 參展紀實：四部選片</span> <span>→</span></a></li>
+        </ul>
+
+        <div class="fact-card">
+          <h4>專題檔案速讀</h4>
+          <ul>
+            <li>• <strong>策展主題：</strong>大二影展自選題目</li>
+            <li>• <strong>色彩基調：</strong>大地陶磚紅與溫沙色</li>
+            <li>• <strong>核心技術：</strong>CSS Grid、語意化 SEO、RWD 響應</li>
+          </ul>
+        </div>
+      </aside>
+
+      <!-- 右側主要內容展演區 (Main Stage) -->
+      <main class="main-stage">
+
+        <!-- ================= TAB 1: 首頁策展 (tab-curation) ================= -->
+        <section class="tab-content active" id="tab-curation">
+          <div class="hero-banner">
+            <span class="hero-tag">2026 大二自選專題發表</span>
+            <h1 class="hero-title">走入百年的光影迷宮：<br>在六角樓下聽見生活的切片</h1>
+            <p class="hero-subtitle">
+              有別於走馬看花的觀光紀錄，本次專題將「臺中第二市場」視為一座活態的電影棚。
+              從日治時期的「新富町貴婦市場」，到如今蒸氣瀰漫的庶民廚房，透過鏡頭穿透時空，重新凝視市井職人的呼吸。
+            </p>
+            <div class="hero-stats">
+              <div class="stat-item">
+                <h5>1917</h5>
+                <p>市場創立奠基年份</p>
+              </div>
+              <div class="stat-item">
+                <h5>6 翼</h5>
+                <p>放射狀街廓動線</p>
+              </div>
+              <div class="stat-item">
+                <h5>4 部</h5>
+                <p>自製主題紀錄短片</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-headline">
+            <h3>焦點策展單元</h3>
+            <span>FEATURED HIGHLIGHTS</span>
+          </div>
+
+          <div class="cards-grid">
+            <article class="editorial-card">
+              <div class="card-thumbnail">
+                <span class="tag-overlay">空間章節</span>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+                <span>六角木構空間考</span>
+              </div>
+              <div class="card-content">
+                <span class="card-meta">ARCHITECTURE & MEMORY</span>
+                <h4 class="card-title">木架構下的全景視野</h4>
+                <p class="card-desc">探討全臺少見的放射狀六角樓設計，如何在昔日成為火警監視哨與秩序中樞，今日化作聚落的心臟。</p>
+                <div class="card-footer">
+                  <span>章節 01</span>
+                  <a href="javascript:void(0)" class="card-action-btn" onclick="switchTab('tab-architecture')">深入閱讀 →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="editorial-card">
+              <div class="card-thumbnail">
+                <span class="tag-overlay">聲響紀錄</span>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+                <span>市場日常聲景採集</span>
+              </div>
+              <div class="card-content">
+                <span class="card-meta">SOUNDSCAPE OF MARKET</span>
+                <h4 class="card-title">清晨四點半的開工樂章</h4>
+                <p class="card-desc">高湯沸騰的泡泡聲、絞肉機的低鳴、推車劃過石子路的摩擦音，構成了市場未曾間斷的生活複音。</p>
+                <div class="card-footer">
+                  <span>章節 02</span>
+                  <a href="javascript:void(0)" class="card-action-btn" onclick="switchTab('tab-timeline')">查看時間軸 →</a>
+                </div>
+              </div>
+            </article>
+
+            <article class="editorial-card">
+              <div class="card-thumbnail">
+                <span class="tag-overlay">職人映像</span>
+                <svg viewBox="0 0 24 24" fill="currentColor"><path d="M18 4l2 4h-3l-2-4h-2l2 4h-3l-2-4H8l2 4H7L5 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V4h-4z"/></svg>
+                <span>三代傳承影像誌</span>
+              </div>
+              <div class="card-content">
+                <span class="card-meta">PORTRAITS & FLAVOR</span>
+                <h4 class="card-title">雙手揉出的歲月質地</h4>
+                <p class="card-desc">從擀麵皮的老繭到攪拌紅茶的節奏，第二市場的溫度來自於數十年如一日的堅持守候。</p>
+                <div class="card-footer">
+                  <span>章節 03</span>
+                  <a href="javascript:void(0)" class="card-action-btn" onclick="switchTab('tab-films')">瀏覽片單 →</a>
+                </div>
+              </div>
+            </article>
+          </div>
+        </section>
+
+        <!-- ================= TAB 2: 六角樓空間考 (tab-architecture) ================= -->
+        <section class="tab-content" id="tab-architecture">
+          <div class="arch-essay">
+            <h2>百年地標：六角樓的建築人類學</h2>
+            <p>
+              臺中第二市場於日治大正六年（1917年）由臺中公共組合興建，早期名為「新富町市場」。
+              不同於常見的縱向長條市集，其最大特徵為中央配置一座二層樓高的木造「六角樓」，自中心放射出六條主要通路，形成獨一無二的蜘蛛網狀格局。
+            </p>
+
+            <div class="arch-layout-grid">
+              <div class="arch-block">
+                <h4>⬢ 六角放射通路機能</h4>
+                <p>放射動線在百年前具備明確的衛生分流與通風優勢；六角樓二樓在昔日更是居高臨下的防火哨兵監視台，遇有事故能第一時間示警敲鐘。</p>
+              </div>
+              <div class="arch-block">
+                <h4>⬢ 貴婦市場的歷史身世</h4>
+                <p>新富町時期主要供應精緻魚肉、進口水果與高檔工藝品，顧客多為日籍官員與仕紳富商，因而有「日本人的市場」或「高級市場」的雅稱。</p>
+              </div>
+              <div class="arch-block">
+                <h4>⬢ 當代空間與光影轉譯</h4>
+                <p>今日六角樓中庭挑空，保留粗獷木桁架與天窗。日照由高處灑落，宛如天然的攝影棚頂燈，是影展專題取景最富質感的場景。</p>
+              </div>
+              <div class="arch-block">
+                <h4>⬢ 聚落聚心力</h4>
+                <p>六條巷弄分別通往三民路、中山路與臺灣大道，即使歷經中區商圈變遷，六角樓依然是老台中人味覺導航的原點。</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      </main>
+    </div>
+  </div>
+
+  <!-- ================= 頁尾 (Footer) ================= -->
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div>
+        <p><strong>大二專題製作：臺中第二市場專題影展</strong></p>
+        <p>設計原則：大地色陶磚色調、Asymmetric Grid 排版、純手寫原生語意結構</p>
+      </div>
+      <div>
+        <p>© 2026 Taichung Second Market Project. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ================= 彈窗：VIBE CODING PROMPT & 交付說明 ================= -->
+  <div class="modal-backdrop" id="promptModal">
+    <div class="modal-box">
+      <div class="modal-header">
+        <h3>專案交付說明與 Vibe Coding Prompt (README.md)</h3>
+        <button class="modal-close-btn" id="closePromptModal">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>以下內容為專案交付規定的 Markdown 格式內容，可直接複製至 GitHub 儲存庫的 <code>README.md</code> 檔案中：</p>
+        <div class="code-mirror-box" id="markdownCode"># 臺中第二市場專題影展 (Taichung Second Market Film Festival)
+大二專題成果發表網頁
+
+---
+
+## 一、 專案核心 Prompt (Vibe Coding 指令紀錄)
+
+### Prompt 1: 視覺風格與大地色系規劃
+> 「請為大二專題『臺中第二市場影展』規劃一套充滿人文歷史感的大地色系（陶磚紅 #9E4738、暖沙亞麻 #F7F5F0、熟成芥末黃 #C08A3E、深炭褐文字 #2A2624），跳脫一般常見模板，呈現歷史建築與市井常民的溫潤質感。」
+
+### Prompt 2: 非對稱 Grid 佈局與 RWD 設計
+> 「請建構一個非對稱雙欄佈局（Asymmetric Layout）：左側為固定式（Sticky）六角樓空間座標導覽欄，右側為主要展示區。使用 CSS Grid 實作卡片流動排版（auto-fill, minmax），在手持裝置（小於 768px）自動適應為單欄與漢堡選單，確保完整顯示所有資訊。」
+
+### Prompt 3: 影展單元與時間軸內容量身撰寫
+> 「請以臺中第二市場百年歷史（新富町、六角樓建築考）與代表性名店（王家菜頭粿、三代福州意麵、老賴紅茶）為題材，撰寫包含影展策劃引言、空間建築分析、清晨至正午的廿四小時旬味時間軸，以及四部紀錄選片卡片。」
+
+---
+
+## 二、 專案交付連結清單
+
+1. **GitHub Prompt 說明 (md 檔案連結)：**
+   https://github.com/你的帳號/second-market-filmfest/blob/main/README.md
+
+2. **InfinityFree 替換後之網址 (Landing Page 首頁畫面)：**
+   http://chiay09.infinityfreeapp.com (或你自己的專屬網址)
+
+3. **Vercel 線上部署網址：**
+   https://second-market-filmfest.vercel.app
+
+---
+
+## 三、 InfinityFree 首頁替換說明
+1. 登入 InfinityFree 控制台，進入 `Online File Manager`。
+2. 進入 `/htdocs/` 資料夾，刪除預設的 `index.html` 或舊有首頁檔案。
+3. 建立 `css/` 與 `images/` 資料夾，並上傳本專案的 `index.html` 至根目錄。
+4. 即可直接於網址首頁呈現本專題。</div>
+      </div>
+      <div class="modal-footer">
+        <button class="btn btn-secondary" id="copyMarkdownBtn">複製 Markdown 內容</button>
+        <button class="btn btn-primary" id="confirmModalBtn">關閉視窗</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= 互動腳本 (Tab 切換、漢堡選單、彈窗、複製) ================= -->
+  <script>
+    // 1. 頁籤切換邏輯 (Tabs Switching)
+    const tabButtons = document.querySelectorAll('.tab-btn:not(.doc-cta)');
+    const tabContents = document.querySelectorAll('.tab-content');
+
+    function switchTab(targetId) {
+      // 切換按鈕狀態
+      tabButtons.forEach(btn => {
+        if (btn.dataset.target === targetId) {
+          btn.classList.add('active');
+        } else {
+          btn.classList.remove('active');
+        }
+      });
+
+      // 切換內容區塊
+      tabContents.forEach(content => {
+        if (content.id === targetId) {
+          content.classList.add('active');
+        } else {
+          content.classList.remove('active');
+        }
+      });
+
+      // 關閉手機版選單
+      document.getElementById('navTabs').classList.remove('open');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    tabButtons.forEach(btn => {
+      btn.addEventListener('click', () => {
+        switchTab(btn.dataset.target);
+      });
+    });
+
+    // 2. 手機版選單切換 (RWD Mobile Toggle)
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const navTabs = document.getElementById('navTabs');
+    mobileMenuBtn.addEventListener('click', () => {
+      navTabs.classList.toggle('open');
+    });
+
+    // 3. 彈窗控制 (Modal for README & Prompt)
+    const openPromptModal = document.getElementById('openPromptModal');
+    const closePromptModal = document.getElementById('closePromptModal');
+    const confirmModalBtn = document.getElementById('confirmModalBtn');
+    const promptModal = document.getElementById('promptModal');
+
+    function toggleModal(show) {
+      if (show) {
+        promptModal.classList.add('open');
+      } else {
+        promptModal.classList.remove('open');
+      }
+    }
+
+    openPromptModal.addEventListener('click', () => toggleModal(true));
+    closePromptModal.addEventListener('click', () => toggleModal(false));
+    confirmModalBtn.addEventListener('click', () => toggleModal(false));
+    promptModal.addEventListener('click', (e) => {
+      if (e.target === promptModal) toggleModal(false);
+    });
+
+   
+  </script>
+</body>
+</html>

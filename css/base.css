@@ -1,0 +1,55 @@
+/* ==========================================================================
+   1. 大地色系變數與全域 Reset (css/base.css)
+   ========================================================================== */
+
+:root {
+  /* 大地色調體系 (Earth Tones) */
+  --c-bg: #F7F5F0;             /* 暖亞麻紙色底 */
+  --c-surface: #FFFFFF;        /* 區塊純白 */
+  --c-surface-warm: #EFECE4;   /* 淺沙色卡片背景 */
+  --c-border: #E0DDD4;        /* 溫潤淺灰褐邊框 */
+  --c-border-strong: #C8C2B4;  /* 深色間隔線 */
+  
+  --c-terracotta: #9E4738;     /* 老臺中磚紅、赤陶色 (主強調色) */
+  --c-mustard: #C08A3E;        /* 熟成芥末黃、老招牌色 */
+  --c-moss: #556B2F;           /* 復古青苔綠 (標籤與輔助) */
+  --c-charcoal: #2A2624;       /* 炭褐深色 (取代生硬純黑) */
+  --c-muted: #6B6560;          /* 說明文字、副標灰褐 */
+
+  /* 字體組合 */
+  --font-serif: "Songti TC", "Noto Serif TC", "Source Han Serif TC", Georgia, serif;
+  --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang TC", "Microsoft JhengHei", sans-serif;
+  --font-mono: "SF Mono", Consolas, Menlo, Monaco, monospace;
+}
+
+/* 基本重設 */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-charcoal);
+  font-family: var(--font-sans);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+button {
+  font-family: inherit;
+  cursor: pointer;
+  border: none;
+  background: none;
+}
